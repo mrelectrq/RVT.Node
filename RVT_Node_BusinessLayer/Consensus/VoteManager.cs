@@ -15,12 +15,12 @@ namespace RVT_Node_BusinessLayer.Consensus
     public class VoteManager : ManagerBase
     {
         
-        public override Tuple<string, bool, string> CheckNodesValidation(List<Tuple<List<string>, Node>> tasks)
+        public override Tuple<string, bool, string> CheckNodesValidation(List<Tuple<List<string>, NodeNeighbor>> tasks)
         {
             // T1 = hash ads for idbd
             // T2 = status
             // T3 = message
-            List<Tuple<string, Node>> todo = new List<Tuple<string, Node>>();
+            List<Tuple<string, NodeNeighbor>> todo = new List<Tuple<string, NodeNeighbor>>();
             Task<NodeVoteVerifyResponse>[] taskArray = new Task<NodeVoteVerifyResponse>[tasks.Count];
 
             int i = 0;
@@ -78,10 +78,10 @@ namespace RVT_Node_BusinessLayer.Consensus
                   + DateTime.Now.ToString());
             }
         }
-        public override List<Tuple<List<string>, Node>> FormateMessage(IEnumerable<Node> nodes, byte[] IDBD, byte[] key)
+        public override List<Tuple<List<string>, NodeNeighbor>> FormateMessage(IEnumerable<NodeNeighbor> nodes, byte[] IDBD, byte[] key)
         {
             var orderedNodes = nodes.OrderBy(ord => new Random().Next()).ToList();
-            var participants = new List<Tuple<List<string>, Node>>();
+            var participants = new List<Tuple<List<string>, NodeNeighbor>>();
 
             foreach (var i in orderedNodes)
             {
@@ -94,7 +94,7 @@ namespace RVT_Node_BusinessLayer.Consensus
 
                 //  var encryptedMessageString = Encoding.ASCII.GetString(encrypted);              
                 
-                participants.Add(new Tuple<List<string>, Node>(encrypted, i));
+                participants.Add(new Tuple<List<string>, NodeNeighbor>(encrypted, i));
             }
             return participants;
         }

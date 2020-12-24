@@ -9,7 +9,7 @@ namespace RVT_Node_BusinessLayer.Consensus
 {
     public interface IManager 
     {
-        public  List<Tuple<List<string>, Node>> FormateMessage(IEnumerable<Node> nodes, byte[] id,byte[] key);
-        public Tuple<string,bool,string> CheckNodesValidation(List<Tuple<List<string>,Node>> message);
+        public  List<Tuple<List<string>, NodeNeighbor>> FormateMessage(IEnumerable<NodeNeighbor> nodes, byte[] id,byte[] key);
+        public Tuple<string,bool,string> CheckNodesValidation(List<Tuple<List<string>, NodeNeighbor>> message);
     }
 }
