@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using RVT_Node_BusinessLayer.BusinessModels;
+using RVT_Node_BusinessLayer.Mapper;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,7 +24,7 @@ namespace RVT_Node_X.Services
         public GlobalNodeConfig(ILogger<GlobalNodeConfig> factory, IConfiguration root)
         {
             _node = NodeConfig.GetInstance();
-             _node.Url = root["NodeConfig:URL"];
+             _node.IpAddress = root["NodeConfig:URL"];
             _node.NodeId = root["NodeConfig:NodeID"];
             _node.SoftwareVersion = root["NodeConfig:SoftwareVersion"];
             _node.Name = root["NodeConfig:Name"];
@@ -38,13 +39,7 @@ namespace RVT_Node_X.Services
         {
             try
             {
-
-                var message = new Node();
-                message.Name = _node.Name;
-                message.NodeId = _node.NodeId;
-                message.SoftwareVersion = _node.SoftwareVersion;
-                message.IpAddress = _node.Url;
-                //message.Thumbprint = _node.certificate.Thumbprint;
+                var message = Mapping.Mapper.Map<Node>(_node);
                 message.PublicKey = _node.certificate.GetPublicKey();
 
                 var handler = new HttpClientHandler();
@@ -62,7 +57,7 @@ namespace RVT_Node_X.Services
                     _logger.LogInformation("Succesefull registered Node on LoadBalancer"+
                         _node.Name+"\r\n"
                         +_node.NodeId+"\r\n"
-                        +_node.Url);
+                        +_node.IpAddress);
                 }
             }
             catch(AggregateException e)
