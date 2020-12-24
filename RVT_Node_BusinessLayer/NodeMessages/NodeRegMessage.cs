@@ -9,6 +9,6 @@ namespace RVT_Node_BusinessLayer.NodeMessages
     {
         public RegistrationMessage Message { get; set; }
 
-        public List<Node> NeighBours { get; set; }
+        public List<NodeNeighbor> NeighBours { get; set; }
     }
 }

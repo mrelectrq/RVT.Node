@@ -13,6 +13,6 @@ namespace RVT_Node_BusinessLayer.NodeMessages
     {
         public byte[] IDVN{ get; set; }
         public byte[] IDBD { get; set; }
-        public List<Node> ConsensusParticipants { get; set; }
+        public List<NodeNeighbor> ConsensusParticipants { get; set; }
     }
 }
