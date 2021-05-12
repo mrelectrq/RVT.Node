@@ -60,11 +60,6 @@ namespace RVT_Node_BusinessLayer.Consensus
                                 + DateTime.Now.ToString());
                     }
                 }
-
-
-
-
-
                 var hashads = GetBlockKey(sortedResponses.Select(m=>m.Thumbprint).ToList());
 
                 return new Tuple<string, bool, string>(hashads, true, "Validation executed succesefull");

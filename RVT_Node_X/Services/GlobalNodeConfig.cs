@@ -41,6 +41,7 @@ namespace RVT_Node_X.Services
             {
                 var message = Mapping.Mapper.Map<Node>(_node);
                 message.PublicKey = _node.certificate.GetPublicKey();
+                message.Url = _node.IpAddress;
 
                 var handler = new HttpClientHandler();
                 handler.ClientCertificates.Add(_node.certificate);

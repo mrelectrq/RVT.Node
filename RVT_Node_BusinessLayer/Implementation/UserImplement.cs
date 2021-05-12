@@ -42,8 +42,7 @@ namespace RVT_Node_BusinessLayer.Implementation
             foreach (var i in data.NeighBours)
             {
                 taskArray[max_i] = Task<NodeRegVerifResp>.Factory.StartNew(() => VerificationAction(request, i.IpAddress));
-                max_i++;
-
+                max_i++;            
             }
 
             Task.WaitAll(taskArray);
@@ -91,7 +90,7 @@ namespace RVT_Node_BusinessLayer.Implementation
             var handler = new HttpClientHandler();
             handler.ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
             handler.AllowAutoRedirect = true;
-
+            
             var client = new HttpClient(handler);
             client.BaseAddress = new Uri(ip);
 

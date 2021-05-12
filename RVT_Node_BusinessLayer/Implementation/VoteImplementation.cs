@@ -65,10 +65,10 @@ namespace RVT_Node_BusinessLayer.Implementation
                     npv.Repdate = DateTime.Now;
                     db.Add(npv);
                     db.SaveChanges();
-                    return new NodeVoteResponse { block = block, Message = "Succes Voted", ProcessedTime = DateTime.Now, Status = true };
+                    return new NodeVoteResponse { block = block, Message = "Succes Voted", ProcessedTime = DateTime.Now, Status = true, IDVN = data.message.IDVN };
                 }
             }
-            else return new NodeVoteResponse { Status = false, Message = "Error validating Vote verification"+response.Item3 , ProcessedTime=DateTime.Now};
+            else return new NodeVoteResponse { Status = false, Message = "Error validating Vote verification"+response.Item3 , ProcessedTime=DateTime.Now,IDVN = data.message.IDVN};
 
 
         }

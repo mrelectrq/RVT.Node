@@ -11,5 +11,6 @@ namespace RVT_Node_BusinessLayer.NodeResponses
         public string Message { get; set; }
         public DateTime ProcessedTime { get; set; }
         public Block block { get; set; }
+        public string IDVN { get; set; }
     }
 }
